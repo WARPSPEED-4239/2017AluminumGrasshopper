@@ -4,6 +4,7 @@ import org.usfirst.frc.team4239.robot.Robot;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DrivetrainRotateToAngle extends Command {
 
@@ -27,7 +28,9 @@ public class DrivetrainRotateToAngle extends Command {
     	angleController.enable();
     }
 
-    protected void execute() {}
+    protected void execute() {
+    	SmartDashboard.putNumber("Rotate Error", angleController.getError());
+    }
 
     protected boolean isFinished() {
         return angleController.onTarget();

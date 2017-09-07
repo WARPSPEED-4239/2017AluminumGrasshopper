@@ -269,15 +269,9 @@ public class Drivetrain extends Subsystem {
 	
 	private PIDController buildAnglePIDController() {
 		// PID constants
-		final double Kp = 0.05;
+		final double Kp = 0.01;
 		final double Ki = 0.0;
-		final double Kd = 0.01;
-		
-		// Ensure the robot always moves unless OnTarget
-		final double MIN_SPEED = 0.45;
-		
-		// Stop the robot from moving too fast
-		final double MAX_SPEED = 0.7;
+		final double Kd = 0.0;
 		
 		// Consider the robot OnTarget iff its measured error is within +/- TOLERANCE
 		final double TOLERANCE = 1.00;
@@ -305,16 +299,6 @@ public class Drivetrain extends Subsystem {
 					SmartDashboard.putBoolean("Angle OnTarget", angleController.onTarget());
 				}
 				*/
-
-				// Apply the speed clamp
-				if (output > 0 && output > MAX_SPEED)
-					output = MAX_SPEED;
-				else if (output > 0 && output < MIN_SPEED)
-					output = MIN_SPEED;
-				else if (output < 0 && output < -MAX_SPEED)
-					output = -MAX_SPEED;
-				else if (output < 0 && output > -MIN_SPEED)
-					output = -MIN_SPEED;
 				
 				arcadeDrive(0.0, output);
 			}

@@ -4,6 +4,7 @@ import org.usfirst.frc.team4239.robot.Robot;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DrivetrainDriveToDistance extends Command {
 
@@ -28,7 +29,9 @@ public class DrivetrainDriveToDistance extends Command {
     	distanceController.enable();
     }
 
-    protected void execute() {}
+    protected void execute() {
+    	SmartDashboard.putNumber("Distance Error", distanceController.getError());
+    }
 
     protected boolean isFinished() {
         return distanceController.onTarget();
