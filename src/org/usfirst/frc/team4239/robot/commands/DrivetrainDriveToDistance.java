@@ -2,12 +2,12 @@ package org.usfirst.frc.team4239.robot.commands;
 
 import org.usfirst.frc.team4239.robot.Robot;
 
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
+import motion.control.MotionController;
 
 public class DrivetrainDriveToDistance extends Command {
 
-	private PIDController distanceController;
+	private MotionController distanceController;
 	private double setpoint;
 	
 	/*
@@ -19,12 +19,15 @@ public class DrivetrainDriveToDistance extends Command {
     public DrivetrainDriveToDistance(double distance) {
         requires(Robot.drivetrain);
         setpoint = distance;
-        distanceController = Robot.drivetrain.getDistancePIDController();
+        distanceController = Robot.drivetrain.getDistanceMotionController();
     }
 
     protected void initialize() {
     	Robot.drivetrain.resetSensors();
-        distanceController.setSetpoint(setpoint);
+    	final double targetPosition = setpoint;
+    	final double cruisingVelocity = 5.0; // 5 feet / sec
+    	final double acceleration = 1.0;     // 1 feet / sec^2
+        distanceController.setMotionProfile(targetPosition, cruisingVelocity, acceleration);
     	distanceController.enable();
     }
 

@@ -7,15 +7,14 @@ import org.usfirst.frc.team4239.robot.commands.DrivetrainArcadeDrive;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import motion.control.MotionController;
+import motion.control.MotionController.MotionOutput;
+import motion.control.MotionController.MotionSource;
 
 public class Drivetrain extends Subsystem {
 
@@ -23,8 +22,8 @@ public class Drivetrain extends Subsystem {
 	private ADXRS450_Gyro gyro;
 	private Encoder leftEncoder, rightEncoder;
 	
-	private PIDController distanceController;
-	private PIDController angleController;
+	private MotionController distanceController;
+	private MotionController angleController;
 	
 	public Drivetrain() {
 		super();
@@ -63,21 +62,8 @@ public class Drivetrain extends Subsystem {
 		/*
 		 * Setup PID controller to be used in autonomous
 		 */
-		distanceController = buildDistancePIDController();
-		angleController = buildAnglePIDController();
-
-		/*
-		if (RobotMap.DEBUG) {
-			try {
-				SmartDashboard.putData("Distance PID", distanceController);
-				SmartDashboard.putData("Angle PID", angleController);
-			}
-			catch (Exception e) {
-				SmartDashboard.putString("Error Message", e.getMessage());
-			}
-		}
-		*/
-		
+		distanceController = buildDistanceMotionController();
+		angleController = buildAngleMotionController();
 	}
 	
 	public void initDefaultCommand() {
@@ -86,6 +72,12 @@ public class Drivetrain extends Subsystem {
 	
 	public void stop() {
 		drive.stopMotor();
+	}
+	
+	public double getLinearVelocity() {
+		double leftVelocity = leftEncoder.getRate();
+		double rightVelocity = rightEncoder.getRate();
+		return (leftVelocity + rightVelocity) / 2;
 	}
 	
 	/*
@@ -169,7 +161,6 @@ public class Drivetrain extends Subsystem {
 			SmartDashboard.putNumber("Right Distance", rightEncoder.getDistance());
 		}
 		
-		
 		/*
 		 * The WPILib convention has the rotate value negated.
 		 */
@@ -185,144 +176,68 @@ public class Drivetrain extends Subsystem {
 		gyro.reset();
 	}
 	
-	public PIDController getDistancePIDController() {
+	public MotionController getDistanceMotionController() {
 		return distanceController;
 	}
 	
-	public PIDController getAnglePIDController() {
+	public MotionController getAngleMotionController() {
 		return angleController;
 	}
 	
-	private PIDController buildDistancePIDController() {
+	private MotionController buildDistanceMotionController() {
 		// PID constants
-		final double Kp = 0.22;
+		final double Kp = 0.0;
 		final double Ki = 0.0;
-		final double Kd = 0.5;
+		final double Kd = 0.0;
+		final double Kv = 0.0;
+		final double Ka = 0.0;
 		
-		// Ensure the robot always moves unless OnTarget
-		final double MIN_SPEED = 0.35;
-		
-		// Stop the robot from moving too fast
-		final double MAX_SPEED = 0.50;
-		
-		// Consider the robot OnTarget if it's measured error is within +/- TOLERANCE
-		final double TOLERANCE = 1 / 2;
-		
-		PIDSource distanceSource = new PIDSource() {
+		MotionSource distanceSource = new MotionSource() {
 			@Override
-			public void setPIDSourceType(PIDSourceType pidSource) {}
-			
-			@Override
-			public double pidGet() {
+			public double getPosition() {
 				double leftDistance = leftEncoder.getDistance();
 				double rightDistance = rightEncoder.getDistance();
-				
 				return (leftDistance + rightDistance) / 2;
-			}
-			
-			@Override
-			public PIDSourceType getPIDSourceType() {
-				return PIDSourceType.kDisplacement;
 			}
 		};
 		
-		PIDOutput distanceOutput = new PIDOutput() {
+		MotionOutput distanceOutput = new MotionOutput() {
 			@Override
-			public void pidWrite(double output) {
-				/*
-				if (RobotMap.DEBUG) {
-					SmartDashboard.putNumber("Distance Error", distanceController.getError());
-					SmartDashboard.putBoolean("Distance OnTarget", distanceController.onTarget());
-				}
-				*/
-				
-				// Apply the speed clamp
-				if (output > 0 && output > MAX_SPEED)
-					output = MAX_SPEED;
-				else if (output > 0 && output < MIN_SPEED)
-					output = MIN_SPEED;
-				else if (output < 0 && output < -MAX_SPEED)
-					output = -MAX_SPEED;
-				else if (output < 0 && output > -MIN_SPEED)
-					output = -MIN_SPEED;
-				
-				/*
-				 * Read the gyro to track how far we have veered off angle.
-				 * Use simple P-controller to straighten out.
-				 * Example:
-				 *    gyro.getAngle() = 2
-				 *    rotate = -0.15 * 5
-				 *           = -0.25
-				 *    So, we rotate to the left with speed 0.25       
-				 */
+			public void updateMotors(double output) {
 				final double Kp = 0.15;
 				double rotate = -Kp * gyro.getAngle();
-				
 				arcadeDrive(output, rotate);
 			}
 		};
 		
-		PIDController controller = new PIDController(Kp, Ki, Kd, distanceSource, distanceOutput);
-		controller.setAbsoluteTolerance(TOLERANCE);
+		MotionController controller = new MotionController(distanceSource, distanceOutput, Kp, Ki, Kd, Kv, Ka);
+		controller.setTolerance(1 / 12);
 		return controller;
 	}
 	
-	private PIDController buildAnglePIDController() {
-		// PID constants
-		final double Kp = 0.05;
+	private MotionController buildAngleMotionController() {
+		final double Kp = 0.0;
 		final double Ki = 0.0;
-		final double Kd = 0.01;
+		final double Kd = 0.0;
+		final double Kv = 0.0;
+		final double Ka = 0.0;
 		
-		// Ensure the robot always moves unless OnTarget
-		final double MIN_SPEED = 0.45;
-		
-		// Stop the robot from moving too fast
-		final double MAX_SPEED = 0.7;
-		
-		// Consider the robot OnTarget iff its measured error is within +/- TOLERANCE
-		final double TOLERANCE = 1.00;
-		
-		PIDSource angleSource = new PIDSource() {
+		MotionSource angleSource = new MotionSource() {
 			@Override
-			public void setPIDSourceType(PIDSourceType pidSource) {				}
-			
-			@Override
-			public double pidGet() {
+			public double getPosition() {
 				return gyro.getAngle();
-			}
-			@Override
-			public PIDSourceType getPIDSourceType() {
-				return PIDSourceType.kDisplacement;
 			}
 		};
 		
-		PIDOutput angleOutput = new PIDOutput() {
+		MotionOutput angleOutput = new MotionOutput() {
 			@Override
-			public void pidWrite(double output) {
-				/*
-				if (RobotMap.DEBUG) {
-					SmartDashboard.putNumber("Angle Error", angleController.getError());
-					SmartDashboard.putBoolean("Angle OnTarget", angleController.onTarget());
-				}
-				*/
-
-				// Apply the speed clamp
-				if (output > 0 && output > MAX_SPEED)
-					output = MAX_SPEED;
-				else if (output > 0 && output < MIN_SPEED)
-					output = MIN_SPEED;
-				else if (output < 0 && output < -MAX_SPEED)
-					output = -MAX_SPEED;
-				else if (output < 0 && output > -MIN_SPEED)
-					output = -MIN_SPEED;
-				
+			public void updateMotors(double output) {
 				arcadeDrive(0.0, output);
 			}
 		};
 		
-		PIDController controller = new PIDController(Kp, Ki, Kd, angleSource, angleOutput);
-		controller.setAbsoluteTolerance(TOLERANCE);
-		controller.setContinuous(true);
+		MotionController controller = new MotionController(angleSource, angleOutput, Kp, Ki, Kd, Kv, Ka);
+		controller.setTolerance(1.0);
 		return controller;
 	}
 }
