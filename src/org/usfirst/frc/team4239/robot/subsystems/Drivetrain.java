@@ -208,7 +208,7 @@ public class Drivetrain extends Subsystem {
 		final double MAX_SPEED = 0.50;
 		
 		// Consider the robot OnTarget if it's measured error is within +/- TOLERANCE
-		final double TOLERANCE = 1 / 2;
+		final double TOLERANCE = 1 / 12;
 		
 		PIDSource distanceSource = new PIDSource() {
 			@Override

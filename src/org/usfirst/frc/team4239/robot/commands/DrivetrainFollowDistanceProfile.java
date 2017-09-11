@@ -24,9 +24,9 @@ public class DrivetrainFollowDistanceProfile extends Command {
     public DrivetrainFollowDistanceProfile(double distance) {
     	requires(Robot.drivetrain);
     	
-    	double Kp = 0.0;
-    	double Ki = 0.0;
-    	double Kd = 0.0;
+    	double Kp = 0.0;   //1*
+    	double Ki = 0.0;   //2
+    	double Kd = 0.0;   //3
     	double Kv = 1 / MAX_VELOCITY;
     	double Ka = 1 / MAX_ACCELERATION;
     	
@@ -38,6 +38,7 @@ public class DrivetrainFollowDistanceProfile extends Command {
     	
     	MotionProfile motionProfile = motionProfiler.getProfile(distance, CRUISE_VELOCITY, ACCELERATION_RATE);
     	motionController.setMotionProfile(motionProfile);
+    	motionController.setTolerance(1/12);
     }
 
     // Called just before this Command runs the first time
