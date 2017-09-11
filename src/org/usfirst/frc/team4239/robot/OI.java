@@ -5,7 +5,9 @@ import org.usfirst.frc.team4239.robot.commands.AgitatorsSpin;
 import org.usfirst.frc.team4239.robot.commands.ClimberClimb;
 import org.usfirst.frc.team4239.robot.commands.DrivetrainArcadeDriveGyroAssist;
 import org.usfirst.frc.team4239.robot.commands.DrivetrainDriveToDistance;
+import org.usfirst.frc.team4239.robot.commands.DrivetrainFollowDistanceProfile;
 import org.usfirst.frc.team4239.robot.commands.DrivetrainRotateToAngle;
+import org.usfirst.frc.team4239.robot.commands.DrivetrainSpeedTest;
 import org.usfirst.frc.team4239.robot.commands.GearPickupClampOut;
 import org.usfirst.frc.team4239.robot.commands.GearPickupLiftDown;
 import org.usfirst.frc.team4239.robot.commands.GearPickupLiftUp;
@@ -96,6 +98,9 @@ public class OI {
 		SmartDashboard.putData("AutonDriveForward", new AutonDriveForward());
 		SmartDashboard.putData("AutonDriveForward (no sensors)", new AutonDriveForwardNoSensors());
 		SmartDashboard.putData("AutonDriveBackward (no sensors)", new AutonDriveBackwardNoSensors());
+		
+		SmartDashboard.putData("DrivetrainSpeedTest", new DrivetrainSpeedTest());
+		SmartDashboard.putData("Follow Profile 5ft", new DrivetrainFollowDistanceProfile(5.0));
 		
 		/*
 		SmartDashboard.putData("FuelIntake Stop", new FuelIntakeStop());

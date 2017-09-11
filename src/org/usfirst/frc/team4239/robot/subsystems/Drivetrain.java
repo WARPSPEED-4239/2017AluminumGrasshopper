@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import motion.control.MotionOutput;
+import motion.control.MotionSource;
 
 public class Drivetrain extends Subsystem {
 
@@ -324,5 +326,38 @@ public class Drivetrain extends Subsystem {
 		controller.setAbsoluteTolerance(TOLERANCE);
 		controller.setContinuous(true);
 		return controller;
+	}
+	
+	public double getDistance() {
+		double leftDistance = leftEncoder.getDistance();
+		double rightDistance = rightEncoder.getDistance();
+		return (leftDistance + rightDistance) / 2;
+	}
+	
+	public double getRate() {
+		double leftRate = leftEncoder.getRate();
+		double rightRate = rightEncoder.getRate();
+		return (leftRate + rightRate) / 2;
+	}
+	
+	public MotionSource getDistanceSource() {
+		return new MotionSource() {
+			@Override
+			public double motionGet() {
+				return getDistance();
+			}
+		};
+	}
+	
+	public MotionOutput getDistanceOutput() {
+		return new MotionOutput() {			
+			@Override
+			public void updateMotors(double output) {
+				final double Kp = 0.0;
+				double rotate = -Kp * gyro.getAngle();
+				
+				drive.arcadeDrive(output, rotate);
+			}
+		};
 	}
 }
