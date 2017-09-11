@@ -356,7 +356,7 @@ public class Drivetrain extends Subsystem {
 				final double Kp = 0.0;
 				double rotate = -Kp * gyro.getAngle();
 				
-				drive.arcadeDrive(output, rotate);
+				arcadeDrive(output, rotate);
 			}
 		};
 	}
