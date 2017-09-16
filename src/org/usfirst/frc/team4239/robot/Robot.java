@@ -3,6 +3,7 @@ package org.usfirst.frc.team4239.robot;
 
 import org.usfirst.frc.team4239.robot.commands.autonomous.AutonDriveBackwardNoSensors;
 import org.usfirst.frc.team4239.robot.commands.autonomous.AutonDriveForward;
+import org.usfirst.frc.team4239.robot.commands.autonomous.AutonDriveForwardDeployGear;
 import org.usfirst.frc.team4239.robot.commands.autonomous.AutonDriveForwardNoSensors;
 import org.usfirst.frc.team4239.robot.subsystems.Agitators;
 import org.usfirst.frc.team4239.robot.subsystems.Climber;
@@ -64,6 +65,7 @@ public class Robot extends IterativeRobot {
 		
 		
 		chooser.addDefault("Drive Forward No Sensors", new AutonDriveForwardNoSensors());
+		chooser.addObject("Center Gear", new AutonDriveForwardDeployGear());
 		chooser.addObject("Drive Forward", new AutonDriveForward());
 		chooser.addObject("Drive Backward No Sensors", new AutonDriveBackwardNoSensors());
 		SmartDashboard.putData("Auto Mode", chooser);

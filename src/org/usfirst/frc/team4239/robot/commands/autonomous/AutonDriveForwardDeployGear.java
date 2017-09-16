@@ -13,7 +13,7 @@ public class AutonDriveForwardDeployGear extends CommandGroup {
     public AutonDriveForwardDeployGear() {
     	addParallel(new GearPickupLiftUp());
     	addParallel(new GearPickupClampIn());
-        addSequential(new DrivetrainDriveToDistance(6.55), 4.0);
+        addSequential(new DrivetrainDriveToDistance(6.55), 3.5);
         addSequential(new WaitCommand(0.5));
         addParallel(new GearPickupClampOut());
         addSequential(new DrivetrainDriveToDistance(-4.55), 2.0);
