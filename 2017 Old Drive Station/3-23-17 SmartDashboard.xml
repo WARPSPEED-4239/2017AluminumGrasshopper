@@ -1,0 +1,196 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="WARPSPEED" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="1464" y="169"/>
+		<width>120</width>
+		<height>47</height>
+	</widget>
+	<widget field="Calibration" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="629" y="32"/>
+		<property name="Background" value="0.153.153.255"/>
+	</widget>
+	<widget field="Gear Deploy Back" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="1388" y="119"/>
+		<width>199</width>
+		<property name="Background" value="255.255.0.255"/>
+	</widget>
+	<widget field="Gear Lift Front" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="1" y="63"/>
+		<width>173</width>
+		<property name="Background" value="255.255.0.255"/>
+	</widget>
+	<widget field="Gear Deploy Front" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="1383" y="97"/>
+		<width>203</width>
+		<property name="Background" value="255.255.0.255"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="760" y="68"/>
+		<property name="Text" value="Connection"/>
+	</static-widget>
+	<widget field="Right" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="935" y="4"/>
+		<property name="Background" value="153.255.153.255"/>
+	</widget>
+	<widget field="Left" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="260" y="5"/>
+		<property name="Background" value="255.153.153.255"/>
+	</widget>
+	<widget field="Hopper 2" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="3" y="435"/>
+		<width>166</width>
+		<property name="Background" value="209.210.212.255"/>
+	</widget>
+	<widget field="Hopper1" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="6" y="412"/>
+		<width>163</width>
+		<property name="Background" value="209.210.212.255"/>
+	</widget>
+	<widget field="Auto Modes" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="1409" y="209"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="-2" y="518"/>
+		<width>216</width>
+		<height>101</height>
+		<property name="Image File" value="C:\Users\Administrator\Desktop\4239 trans.png"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+	<widget field="BottomSwitch" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="-1" y="189"/>
+		<width>118</width>
+		<height>48</height>
+		<property name="Color to show when true" value="51.255.0.255"/>
+	</widget>
+	<widget field="TopSwitch" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="1" y="116"/>
+		<width>102</width>
+		<height>48</height>
+		<property name="Color to show when true" value="51.255.0.255"/>
+	</widget>
+	<widget field="AutonAngle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="784" y="3"/>
+		<height>20</height>
+		<property name="Background" value="0.153.153.255"/>
+	</widget>
+	<widget field="Angle Error" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="785" y="29"/>
+		<property name="Background" value="0.153.153.255"/>
+	</widget>
+	<widget field="Angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="650" y="4"/>
+		<property name="Background" value="0.153.153.255"/>
+	</widget>
+	<widget field="AutonRight" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1166" y="34"/>
+		<property name="Background" value="153.255.153.255"/>
+	</widget>
+	<widget field="Chassis" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="1436" y="145"/>
+		<width>150</width>
+		<property name="Background" value="209.210.212.255"/>
+	</widget>
+	<widget field="left" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="376" y="4"/>
+		<property name="Background" value="255.153.153.255"/>
+	</widget>
+	<widget field="Shooter" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="1" y="240"/>
+		<width>171</width>
+		<property name="Background" value="180.208.0.255"/>
+	</widget>
+	<widget field="Winch" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="1442" y="74"/>
+		<width>145</width>
+		<height>20</height>
+		<property name="Background" value="91.79.17.255"/>
+	</widget>
+	<widget field="AutonLeft" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="449" y="32"/>
+		<property name="Background" value="255.153.153.255"/>
+	</widget>
+	<widget field="Pickup" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="3" y="91"/>
+		<width>170</width>
+		<property name="Background" value="21.154.212.255"/>
+	</widget>
+	<widget field="right" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1072" y="3"/>
+		<property name="Background" value="153.255.153.255"/>
+	</widget>
+	<widget field="Left Error" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="295" y="31"/>
+		<property name="Background" value="255.153.153.255"/>
+	</widget>
+	<widget field="Right Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1188" y="4"/>
+		<property name="Background" value="153.255.153.255"/>
+	</widget>
+	<widget field="Right Error" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1005" y="32"/>
+		<height>20</height>
+		<property name="Background" value="153.255.153.255"/>
+	</widget>
+	<widget field="Left Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="487" y="3"/>
+		<property name="Background" value="255.153.153.255"/>
+	</widget>
+	<widget field="Subframe Lift" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="0" y="167"/>
+		<width>172</width>
+		<property name="Background" value="91.79.17.255"/>
+	</widget>
+	<widget field="Shooter Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="-45" y="264"/>
+		<width>255</width>
+		<height>146</height>
+		<property name="Upper Limit" value="1.0"/>
+		<property name="Lower Limit" value="0.3"/>
+		<property name="Tick Interval" value="0.1"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="1" y="0"/>
+		<width>261</width>
+		<height>54</height>
+		<property name="Image File" value="C:\Users\Administrator\Desktop\WARP trans.png"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="1374" y="451"/>
+		<width>216</width>
+		<height>154</height>
+		<property name="Image File" value="C:\Users\Administrator\Desktop\W trans.png"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="1328" y="0"/>
+		<width>299</width>
+		<height>78</height>
+		<property name="Image File" value="C:\Users\Administrator\Desktop\Aluminum Grasshopper Script Logo.png"/>
+		<property name="Maintain Aspect Ratio" value="true"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="214" y="65"/>
+		<width>1166</width>
+		<height>19</height>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.MjpgStreamViewerImpl">
+		<location x="789" y="66"/>
+		<width>591</width>
+		<height>532</height>
+		<property name="MJPG Server URL" value="http://roborio-4239-frc.local:1182?action=stream"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.MjpgStreamViewerImpl">
+		<location x="213" y="65"/>
+		<width>571</width>
+		<height>533</height>
+		<property name="MJPG Server URL" value="http://roborio-4239-frc.local:1181?action=stream"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="-52" y="-58"/>
+		<property name="Image File" value="C:\Users\Administrator\Desktop\White Backround.jpg"/>
+	</static-widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>

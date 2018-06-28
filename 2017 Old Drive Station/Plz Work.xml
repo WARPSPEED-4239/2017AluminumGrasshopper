@@ -1,0 +1,117 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Rear Piston Out" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="1124" y="-4"/>
+		<width>129</width>
+		<height>38</height>
+	</widget>
+	<widget field="Drive Straight" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="1403" y="161"/>
+		<width>118</width>
+		<height>42</height>
+	</widget>
+	<widget field="Using Gyro" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="1401" y="113"/>
+		<width>102</width>
+		<height>41</height>
+	</widget>
+	<widget field="Top Limit Switch" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="8" y="236"/>
+		<width>126</width>
+		<height>40</height>
+	</widget>
+	<widget field="Bottom Limit Switch" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="6" y="284"/>
+		<width>141</width>
+		<height>39</height>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="193" y="49"/>
+		<width>476</width>
+		<height>509</height>
+		<property name="Camera Choice" value="USB Camera 1"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="676" y="59"/>
+		<width>716</width>
+		<height>534</height>
+		<property name="Degrees Rotation" value="180"/>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
+	<widget field="Rotate Right 5 degrees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="381" y="549"/>
+	</widget>
+	<widget field="Drivetrain" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="595" y="9"/>
+	</widget>
+	<widget field="Subframe" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="23" y="157"/>
+	</widget>
+	<widget field="AutonDriveForwardTurnRightDeployGear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="366" y="551"/>
+	</widget>
+	<widget field="Fuel Intake" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="24" y="123"/>
+	</widget>
+	<widget field="Climber" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="1423" y="90"/>
+		<height>20</height>
+	</widget>
+	<widget field="Drive Backward 5ft" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="401" y="549"/>
+	</widget>
+	<widget field="AutonDriveForward" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="399" y="547"/>
+	</widget>
+	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="1401" y="204"/>
+	</widget>
+	<widget field="Drive Forward 5ft" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="406" y="545"/>
+	</widget>
+	<widget field="AutonDriveForwardDeployGear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="344" y="547"/>
+	</widget>
+	<widget field="Rotate Left 90 degrees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="381" y="547"/>
+	</widget>
+	<widget field="Rotate Right 90 degrees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="375" y="546"/>
+	</widget>
+	<widget field="Rotate Left 5 degrees" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="388" y="545"/>
+	</widget>
+	<widget field="Drive Backward 1ft" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="404" y="545"/>
+	</widget>
+	<widget field="Shooter" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="23" y="181"/>
+	</widget>
+	<widget field="Drive Forward 1ft" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="401" y="542"/>
+	</widget>
+	<widget field="AutonDriveForwardTurnLeftDeployGear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="376" y="553"/>
+	</widget>
+	<widget field="Agitators" type="Subsystem" class="edu.wpi.first.smartdashboard.gui.elements.Subsystem">
+		<location x="17" y="207"/>
+	</widget>
+	<widget field="Move" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="769" y="7"/>
+	</widget>
+	<widget field="Right Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="426" y="7"/>
+	</widget>
+	<widget field="Left Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="441" y="29"/>
+	</widget>
+	<widget field="Heading" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="291" y="7"/>
+	</widget>
+	<widget field="Rotate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="774" y="34"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
